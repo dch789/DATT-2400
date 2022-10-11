@@ -36,7 +36,7 @@ class Branch {
     }
 
     //number of possible splits
-    numOfSplits = 4;
+    numOfSplits = 7;
     //initialize branch's split list
     branchSplit = new FloatList();
     //split attempts
@@ -55,9 +55,15 @@ class Branch {
 
     //only draw while size of elements is above given limit
     if (branchSize > branchLimit) {
+      //Reset grid
+      resetMatrix();
+      tree.resetMatrix();
 
-      fill(255);
-      tree.fill(255);
+      float randGreen = int( random(woodColG - 10, woodColG + 10) );
+      float randBlue = int( random(woodColB - 10, woodColB + 10) );
+
+      fill(woodColR, randGreen, randBlue);
+      tree.fill(woodColR, randGreen, randBlue);
 
       //branch origin is last stem pos
       translate(originPos.x, originPos.y);
@@ -89,10 +95,6 @@ class Branch {
       //decrease branch size
       branchSize = branchSize - 0.01;
 
-      //Reset grid
-      resetMatrix();
-      tree.resetMatrix();
-
       //loop branch's split list
       for (int i = 0; i < branchSplit.size(); i++) {
 
@@ -106,12 +108,10 @@ class Branch {
           branchSplit.remove(i);
 
           //DEBUG - Uncomment to mark split spawn points
-          //fill(255, 0, 0);
-          //translate(originPos.x, originPos.y);
-          //rotate(radians(branchAngle));
-          //rect(branchPos.x, branchPos.y, 15, 15);
-          //fill(255);
           //resetMatrix();
+          //fill(255, 0, 0);
+          //setMatrix();
+          //rect(branchPos.x, branchPos.y, 15, 15);
 
           //Construct split
           Split sp = new Split(originPos, new PVector(branchPos.x, branchPos.y), branchSize, branchSpeed, branchAngle);
@@ -131,10 +131,11 @@ class Branch {
     }
   }
 
-  void branchMatrix() {
-    resetMatrix();
-
+  void setMatrix() {
     translate(originPos.x, originPos.y);
     rotate(radians(branchAngle));
+    
+    tree.translate(originPos.x, originPos.y);
+    tree.rotate(radians(branchAngle));
   }
 }

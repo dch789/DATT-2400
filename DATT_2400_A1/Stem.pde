@@ -44,9 +44,12 @@ class Stem {
 
     //current ypos is below expand height of stem --> no branches
     else {
+      
+      float randGreen = int( random(woodColG - 10, woodColG + 10) );
+      float randBlue = int( random(woodColB - 10, woodColB + 10) );
 
-      fill(255);
-      tree.fill(255);
+      fill(woodColR, randGreen, randBlue);
+      tree.fill(woodColR, randGreen, randBlue);
 
       //is middle stem
       if (stemOffset == 0) {

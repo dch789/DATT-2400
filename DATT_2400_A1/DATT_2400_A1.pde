@@ -13,17 +13,24 @@ ArrayList<Split> split;
 ArrayList<Leaves> leaves;
 ArrayList<PVector> leavesCoords;
 
-color leafCol;
-color woodCol;
+int leafCol;
+int woodColR;
+int woodColG;
+int woodColB;
+
+color petalCol;
 
 Stem middleStem;
 Stem leftStem;
 Stem rightStem;
 
+boolean startFlowering;
+boolean printTree;
+
 PGraphics tree;
 
 void setup() {
-  size(1000, 800);
+  size(1200, 800);
   noStroke();
   background(51);
   rectMode(CENTER);
@@ -46,9 +53,6 @@ void setup() {
   //define location of tree root
   rootPos = new PVector(middle.x, height + ground);
 
-  leafCol = color(105, int( random(140, 160) ), 105);
-  woodCol = color(int( random(255) ));
-
   //Stems (Mid, Left, Right)
   //args: origin x, y, size, offset of (-1 left, 0 mid, 1 right), speed, shrinkfactor
   middleStem = new Stem(rootPos.x, rootPos.y, size, 0, speed, stemShrinkHeight);
@@ -60,7 +64,7 @@ void setup() {
 
   //create arraylist for splits
   split = new ArrayList<Split>();
-  
+
   //create arraylist for splits
   leaves = new ArrayList<Leaves>();
 
@@ -68,6 +72,26 @@ void setup() {
   //added to by Branch and Split
   leavesCoords = new ArrayList<PVector>();
 
+  //generate green value for leaf colour
+  leafCol = int( random(100, 175) );
+  //generate values for wood colour
+  woodColR = int( random(100, 255) );
+  woodColG = int( random(woodColR - 30, woodColR - 30) );
+  woodColB = int( random(woodColR - 60, woodColR - 60) );
+
+  petalCol = color(int( random(205, 255) ), int( random(205, 255) ), int( random(205, 255) ));
+
+  //pick random element of petalCol to modify
+  float randCol = random (0, 1);
+  if (randCol < 0.25) {
+    red(petalCol - 40);
+  } else if (randCol < 0.50) {
+    green(petalCol - 40);
+  } else if (randCol < 0.75) {
+    blue(petalCol - 40);
+  }
+
+  //setup PGraphics
   tree = createGraphics(width + 100, height + 100);
   tree.beginDraw();
   tree.noStroke();
@@ -79,6 +103,9 @@ void draw() {
   //background(51);
   //=============================
 
+  //bool to record if tree is done
+  boolean done = true;
+
   //UPDATE STEMS ===
   middleStem.display();
   //update origin to middlestem pos
@@ -87,9 +114,6 @@ void draw() {
   //update origin to middlestem pos
   rightStem.originPos = middleStem.stemPos;
   rightStem.display();
-
-  //bool to record if tree is done
-  boolean done = true;
 
   //UPDATE BRANCHES ===
   //no branches:
@@ -122,14 +146,37 @@ void draw() {
 
   //TREE FINISHED ===
   if (done) {
-    tree.endDraw();
-    //background(51);
-    //image(tree, -7, -1);
-    //tint(0, 153, 0);
 
     //UPDATE LEAVES ===
+    //check if flowering can begin
+    startFlowering = true;
+    printTree = true;
+    for (int i = 0; i < leaves.size(); i++) {
+      //leaves are not finished yet
+      if (leaves.get(i).leavesFin == false) {
+        startFlowering = false;
+      }
+      //floweres not finished yet
+      if (leaves.get(i).flowered == false) {
+        printTree = false;
+      }
+    }
+
+    //draw leaves and flower
     for (int i = 0; i < leaves.size(); i++) {
       leaves.get(i).display();
+    }
+
+    //print tree image once everything done
+    if (printTree) {
+      tree.endDraw();
+      background(51);
+      resetMatrix();
+      image(tree, 0, 0);
+
+      //save image
+      tree.save("tree.png");
+      exit();
     }
   }
 }
