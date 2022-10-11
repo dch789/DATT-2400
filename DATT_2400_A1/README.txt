@@ -19,3 +19,9 @@ Breakdown of generation:
 Colors and sizes of elements are mostly generated at the start of the program, within a range I have decided to be most appealing.
 Variations to these base colours are then made during generation to create patterns.
 
+===
+
+A question I'd like to ask:
+
+How can I properly export PGraphics to SVG?
+I tried to follow the reference for SVG pertaining to PGraphics (on processing.org), but I always end up with the error: No updatePixels() for PGraphicsSVG
