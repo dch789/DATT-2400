@@ -1,7 +1,7 @@
 My project generates 'trees' of various design
 
 Mostly makes use of random() and PVectors to generate shapes
-Also uses makes heavy use of Matrix transformations/rotations
+Also makes heavy use of Matrix transformations/rotations
 
 Breakdown of generation:
 - a main 'stem' starts at center-bottom of screen
