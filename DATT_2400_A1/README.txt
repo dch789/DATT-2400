@@ -10,10 +10,10 @@ Breakdown of generation:
 - 'branches' (similar in function to the stems) form at various generated rotations, increasing in Y pos
 - at generated points along each branch, a 'split' can form (max of 7 per branch)
 - each split is like a thinner branch, with varying generated length and thickness
-- after every branch and split has reached it's minimum size (size of rects shrink with each draw cycle), they stop growing
+- after every branch and split has reached it's minimum size (size of rects shrink with each draw cycle - min size determines length), they stop growing
 - leaves form at the last locations of each branch and split (the tips)
 - leaves formed at branch positions spawn additional leaves to the left, right, and top of the origin point
-- leaves start at an origin point, and randomly draw within a radius which increases each cycle, until it reaches a generated max-size
+- leaves start at an origin point, and randomly draw within a radius (which increases each cycle), until it reaches a generated max-size
 - flowers then spawn at generated points within the leaves
 
 Colors and sizes of elements are mostly generated at the start of the program, within a range I have decided to be most appealing.
