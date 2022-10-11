@@ -1,7 +1,7 @@
-My project generates 'trees' of various design
+My project generates 'trees' of various design:
 
-Mostly makes use of random() and PVectors to generate shapes
-Also makes heavy use of Matrix transformations/rotations
+Mostly makes use of random() and PVectors to generate shapes.
+Also makes heavy use of Matrix transformations/rotations.
 
 Breakdown of generation:
 - a main 'stem' starts at center-bottom of screen
@@ -16,5 +16,6 @@ Breakdown of generation:
 - leaves start at an origin point, and randomly draw within a radius which increases each cycle, until it reaches a generated max-size
 - flowers then spawn at generated points within the leaves
 
-Colors and sizes of elements are generated at the start of the program, within a range I have decided to be most appealing
+Colors and sizes of elements are mostly generated at the start of the program, within a range I have decided to be most appealing.
+Variations to these base colours are then made during generation to create patterns.
 
