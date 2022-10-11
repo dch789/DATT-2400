@@ -21,7 +21,7 @@ Variations to these base colours are then made during generation to create patte
 
 ===
 
-A question I'd like to ask:
+A question out of curiosity:
 
 Do you know how to export PGraphics as SVG?
 I tried to follow the reference for SVG and PGraphics (on processing.org), but I always end up with the error: 
