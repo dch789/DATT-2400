@@ -1,6 +1,6 @@
 My project generates 'trees' of various design:
 
-Mostly makes use of random() and PVectors to generate shapes.
+Mostly makes use of for-loops, random() and PVectors to generate shapes.
 Also makes heavy use of Matrix transformations/rotations.
 
 Breakdown of generation:
